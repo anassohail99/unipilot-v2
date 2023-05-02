@@ -28,6 +28,8 @@ const chainIds = {
   optgoerli: 420,
   arbgoerli: 421613,
   optimism: 10,
+  zkEVM: 1442,
+  polygonzkEVM: 1101,
 };
 
 // // Ensure that we have all the environment variables we need.
@@ -49,12 +51,12 @@ function createTestnetConfig(
   network: keyof typeof chainIds,
 ): NetworkUserConfig {
   const url: string =
-    network == "mumbai"
-      ? "https://polygon-mumbai.g.alchemy.com/v2/gEMZWZWwC1VXZdezkoirsfxeRNTH_Qf_"
-      : "https://polygon-mainnet.g.alchemy.com/v2/gEMZWZWwC1VXZdezkoirsfxeRNTH_Qf_";
+    network == "polygonzkEVM"
+      ? "https://zkevm-rpc.com"
+      : "https://rpc.public.zkevm-test.net";
   return {
     accounts: [
-      "1fc9289f485c3128f782af66c4b1104ba1031f401a16c0cf7a7bb80a147b04d7",
+      "430db2f72c04e31fcf2e34888fc50e10663a1f2d39c2e7cd01d5dd86e19f97bc",
     ],
     chainId: chainIds[network],
     url,
@@ -93,6 +95,8 @@ const config: HardhatUserConfig = {
     optgoerli: createTestnetConfig("optgoerli"),
     arbgoerli: createTestnetConfig("arbgoerli"),
     optimism: createTestnetConfig("optimism"),
+    zkEVM: createTestnetConfig("zkEVM"),
+    polygonzkEVM: createTestnetConfig("polygonzkEVM"),
   },
   mocha: {
     timeout: 50000,
@@ -128,7 +132,19 @@ const config: HardhatUserConfig = {
     target: "ethers-v5",
   },
   etherscan: {
-    // apiKey: etherscanApiKey,
+    apiKey: {
+      zkEVM: "2RQMY1GRQD38KP8DQX8KEP9DDEFKVK38HJ",
+    },
+    customChains: [
+      {
+        network: "zkEVM",
+        chainId: 1442,
+        urls: {
+          apiURL: "https://explorer.public.zkevm-test.net/api",
+          browserURL: "https://testnet-zkevm.polygonscan.com/",
+        },
+      },
+    ],
   },
   contractSizer: {
     alphaSort: true,

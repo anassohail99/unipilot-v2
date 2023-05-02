@@ -22,7 +22,7 @@ task("deploy-unipilot", "Deploy all unipilot contracts")
     const args = {
       pool: cliArgs.pool,
       router: "0x0000000000000000000000000000000000000000",
-      strategy: "0x3DB63a880FFaED0aBfA40496366fcc383256ecCA",
+      strategy: "0x9c7cB0BB03044D6c1c472b26058bFA61B9956D22",
       governance: cliArgs.governance,
       unipilotFactory: "0xcFe7AB2AfB8602A08fE6d05095e1ecf3cAf3D924",
       name: cliArgs.name,
@@ -80,7 +80,7 @@ task("deploy-unipilotFactory-active", "Deploy unipilot active factory contract")
     const args = {
       uniswapFactory: "0x1F98431c8aD98523631AE4a59f267346ea31F984",
       governance: cliArgs.governance,
-      uniStrategy: "0x330e15829aB8c0DabAFc8Ead484CF643b8964FB3",
+      uniStrategy: "0x9c7cB0BB03044D6c1c472b26058bFA61B9956D22",
       indexFund: "0x189254DeE4Ba8bb7fF5356F3C2E0f215525B3450",
       WETH: "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
       indexFundPercentage: 20,
